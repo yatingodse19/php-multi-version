@@ -1,0 +1,9 @@
+# Ignore MySQL data directory
+mysql-data/
+
+# Ignore SSL certificates
+certs/
+
+# Ignore temporary/cache files
+*.tmp
+*.log
