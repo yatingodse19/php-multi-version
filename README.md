@@ -52,6 +52,4 @@ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout php-local.key -out p
 
 Fill in the required information when prompted. The generated php-local.key and php-local.crt files will be used for both PHP 5.6 and PHP 7.4 domains.
 
-Please note that sensitive data such as SSL certificates and database files are included in this repository for demonstration purposes only, and should not be used in a production environment.
-
 
