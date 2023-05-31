@@ -7,3 +7,4 @@ certs/
 # Ignore temporary/cache files
 *.tmp
 *.log
+set Content-Security-Policy "default-src
