@@ -1,12 +1,14 @@
 FROM php:7.4-fpm-alpine
 
+# Install system dependencies and PHP extensions
 RUN apk update && apk add --no-cache \
-  freetype-dev \
-  jpeg-dev \
-  libjpeg-turbo-dev \
-  libmcrypt-dev \
-  libpng-dev \
-  libzip-dev \
-  && docker-php-ext-install -j$(nproc) mysqli pdo_mysql zip \
-  && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
-  && docker-php-ext-install -j$(nproc) gd
+        freetype-dev \
+        jpeg-dev \
+        libjpeg-turbo-dev \
+        libpng-dev \
+        libzip-dev \
+    && docker-php-ext-configure gd \
+        --with-freetype=/usr/include/ \
+        --with-jpeg=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install mysqli pdo_mysql zip

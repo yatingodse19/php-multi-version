@@ -11,10 +11,12 @@ services:
       - ./sites-enabled:/etc/nginx/sites-enabled
       - ./php56:/var/www/php56
       - ./php74:/var/www/php74
+      - ./php82:/var/www/php82
       - ./certs:/etc/nginx/certs
     depends_on:
       - php56
       - php74
+      - php82
 
   php56:
     build:
@@ -32,12 +34,28 @@ services:
       - ./php74:/var/www/php74
       - ./php74.ini:/usr/local/etc/php/php.ini
 
-  mysql:
-    image: mariadb:10.5
-    environment:
-      MYSQL_ROOT_PASSWORD: root@123
+  php82:
+    build:
+      context: .
+      dockerfile: Dockerfile-php82
     volumes:
-      - ./mysql-data:/var/lib/mysql
-      - ./mysql-config:/etc/mysql/conf.d
-    ports:
-      - "3306:3306"
+      - ./php82:/var/www/php82
+      - ./php82.ini:/usr/local/etc/php/php.ini
+
+  composer:
+    image: composer:latest
+    volumes:
+      - ./php74:/var/www/php74
+    working_dir: /var/www/php74
+    depends_on:
+      - php74
+
+  # mysql:
+  #   image: mariadb:10.5
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root@123
+  #   volumes:
+  #     - ./mysql-data:/var/lib/mysql
+  #     - ./mysql-config:/etc/mysql/conf.d
+  #   ports:
+  #     - "3306:3306"
