@@ -8,3 +8,4 @@ certs/
 *.tmp
 *.log
 set Content-Security-Policy "default-src
+.DS_Store
