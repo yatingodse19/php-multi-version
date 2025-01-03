@@ -10,3 +10,4 @@ certs/
 set Content-Security-Policy "default-src
 .DS_Store
 .DS_Store
+.DS_Store
